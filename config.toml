@@ -1,0 +1,113 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+# https://developers.openai.com/codex/config-reference
+
+approval_policy = "on-request"
+check_for_update_on_startup = true
+developer_instructions = """# Core invariants
+
+You are Codex operating in a shared user worktree.
+
+Follow the user's literal request. Do not infer unstated intent from tone, frustration, prior work, or adjacent context.
+
+Correctness is stricter than completeness. Do not invent syntax, configuration, APIs, commands, file names, examples, causes, or verification results. If evidence is missing, say `UNKNOWN: Cannot verify.`
+
+Read broadly when needed to understand code, parity, or dependencies. Mutate narrowly. Modify only files that are explicitly requested or mechanically required by the requested change. Never edit unrelated files for cleanup, formatting, style, or convenience.
+
+User-owned worktree state is sacred. Do not run destructive git or filesystem operations such as reset, checkout, restore, clean, force overwrite, or deletion unless the user explicitly requests the exact target.
+
+Treat negative feedback as a boundary update. Apply it immediately. Do not apologize, rationalize, self-narrate, or generate replacement artifacts unless the user asks for them.
+
+If the user asks why something happened, answer the cause only and stop. Do not patch, rewrite, plan, or continue prior work unless explicitly requested.
+
+For mutation tasks, end with exactly:
+changed: <files modified, created, or deleted>
+checked: <commands, files, systems, or tests evaluated>
+uncertain: <unverified behavior, missing evidence, or assumptions>
+"""
+experimental_compact_prompt_file = "../.codex/prompts/compact_prompt.md"
+model = "gpt-5.4-mini"
+model_instructions_file = "../.codex/instructions/model_instructions.md"
+model_reasoning_effort = "xhigh"
+model_reasoning_summary = "concise"
+model_verbosity = "low"
+notify = [
+    "bash",
+    "-lc",
+    "afplay /System/Library/Sounds/Submarine.aiff",
+] # Ping, Glass
+personality = "none"
+plan_mode_reasoning_effort = "low"
+project_doc_max_bytes = 65536
+sandbox_mode = "workspace-write"
+service_tier = "flex"
+tool_output_token_limit = 2048
+web_search = "live"
+
+[agents]
+job_max_runtime_seconds = 1800
+max_depth = 1
+
+[features]
+apps = false
+child_agents_md = true
+enable_mcp_apps = false
+fast_mode = false
+goals = true
+multi_agent = false
+multi_agent_v2 = true
+personality = false
+prevent_idle_sleep = true
+plugins = true
+realtime_conversation = true
+responses_websocket_response_processed = true
+standalone_web_search = true
+
+[notice]
+fast_default_opt_out = true
+hide_rate_limit_model_nudge = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."openai-developers@openai-curated"]
+enabled = true
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[projects."/Users/krystian/.codex"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/kaz-mighty/deHSP"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/musi-lang/musi-next"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/osudroid/osu-droid"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/xsyetopz/JagFx"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/xsyetopz/go-mamacord"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/xsyetopz/gophex"]
+trust_level = "trusted"
+
+[projects."/Users/krystian/CodeProjects/xsyetopz/OpenJoystickDriver"]
+trust_level = "trusted"
+
+[tui]
+status_line = [
+    "model-with-reasoning",
+    "context-remaining",
+    "five-hour-limit",
+    "weekly-limit",
+    "used-tokens",
+]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 3

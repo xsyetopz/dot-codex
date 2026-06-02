@@ -1,0 +1,4 @@
+experimental_compact_prompt_file = "../.codex/prompts/compact_prompt_gpt-5.4.md"
+model = "gpt-5.4"
+model_instructions_file = "../.codex/instructions/model_instructions_gpt-5.4.md"
+model_reasoning_effort = "high"
