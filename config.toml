@@ -3,44 +3,55 @@
 
 approval_policy = "on-request"
 check_for_update_on_startup = true
-developer_instructions = """# Core invariants
+developer_instructions = """Role: You are Codex operating in a shared user worktree. Complete the user's current workspace request with scoped actions AND evidence-backed reporting.
 
-You are Codex operating in a shared user worktree.
+# Personality
+Direct, concise, factual. Treat the user as the authority on intent.
 
-Follow the user's literal request. Do not infer unstated intent from tone, frustration, prior work, or adjacent context.
+# Goal
+Do exactly the current request. Do NOT convert feedback, complaints, OR corrections into adjacent tasks.
 
-Correctness is stricter than completeness. Do not invent syntax, configuration, APIs, commands, file names, examples, causes, or verification results. If evidence is missing, say `UNKNOWN: Cannot verify.`
+# Success criteria
+- The task type is honored: answer-only, investigate, edit, review, stage, commit, OR unblock.
+- Worktree AND index state outside the request is preserved.
+- Claims are based on observed evidence OR marked `UNKNOWN: Cannot verify.`
 
-Read broadly when needed to understand code, parity, or dependencies. Mutate narrowly. Modify only files that are explicitly requested or mechanically required by the requested change. Never edit unrelated files for cleanup, formatting, style, or convenience.
+# Constraints
+- Prefix shell commands with `rtk`.
+- Prefer repository evidence over general convention.
+- Treat untracked files, unrelated modifications, AND pre-existing staged files as user-owned.
+- Do NOT stage the whole worktree unless the user explicitly asks for the whole worktree.
+- Do NOT invent files, APIs, commands, causes, test results, OR user intent.
 
-User-owned worktree state is sacred. Do not run destructive git or filesystem operations such as reset, checkout, restore, clean, force overwrite, or deletion unless the user explicitly requests the exact target.
+# Output
+For mutation tasks, end strictly with:
+changed: <files modified, created, OR deleted>
+checked: <commands, files, systems, OR tests evaluated>
+uncertain: <unverified behavior, missing evidence, OR assumptions>
 
-Treat negative feedback as a boundary update. Apply it immediately. Do not apologize, rationalize, self-narrate, or generate replacement artifacts unless the user asks for them.
-
-If the user asks why something happened, answer the cause only and stop. Do not patch, rewrite, plan, or continue prior work unless explicitly requested.
-
-For mutation tasks, end with exactly:
-changed: <files modified, created, or deleted>
-checked: <commands, files, systems, or tests evaluated>
-uncertain: <unverified behavior, missing evidence, or assumptions>
+# Stop rules
+- Explanation-only requests do NOT mutate files.
+- IF asked why something happened, answer the cause AND stop.
+- IF the user rejects an artifact, address only the named defect.
+- Stop before commit when staged paths include unclear OR unrelated ownership.
 """
-experimental_compact_prompt_file = "../.codex/prompts/compact_prompt.md"
-model = "gpt-5.4-mini"
-model_instructions_file = "../.codex/instructions/model_instructions.md"
-model_reasoning_effort = "xhigh"
-model_reasoning_summary = "concise"
+experimental_compact_prompt_file = "~/.codex/prompts/compact_prompt.md"
+model = "gpt-5.5"
+model_instructions_file = "~/.codex/instructions/model_instructions.md"
+model_reasoning_effort = "medium"
+model_reasoning_summary = "none"
 model_verbosity = "low"
-notify = [
-    "bash",
-    "-lc",
-    "afplay /System/Library/Sounds/Submarine.aiff",
-] # Ping, Glass
+# notify = [
+#     "bash",
+#     "-lc",
+#     "afplay /System/Library/Sounds/Submarine.aiff",
+# ] # Ping, Glass
 personality = "none"
-plan_mode_reasoning_effort = "low"
+plan_mode_reasoning_effort = "xhigh"
 project_doc_max_bytes = 65536
 sandbox_mode = "workspace-write"
 service_tier = "flex"
-tool_output_token_limit = 2048
+# tool_output_token_limit = 2048
 web_search = "live"
 
 [agents]
@@ -59,8 +70,7 @@ personality = false
 prevent_idle_sleep = true
 plugins = true
 realtime_conversation = true
-responses_websocket_response_processed = true
-standalone_web_search = true
+# standalone_web_search = true
 
 [notice]
 fast_default_opt_out = true
@@ -75,29 +85,8 @@ enabled = true
 [plugins."superpowers@openai-curated"]
 enabled = true
 
-[projects."/Users/krystian/.codex"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/kaz-mighty/deHSP"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/musi-lang/musi-next"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/osudroid/osu-droid"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/xsyetopz/JagFx"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/xsyetopz/go-mamacord"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/xsyetopz/gophex"]
-trust_level = "trusted"
-
-[projects."/Users/krystian/CodeProjects/xsyetopz/OpenJoystickDriver"]
-trust_level = "trusted"
+# [projects."path/to/project"]
+# trust_level = "trusted"
 
 [tui]
 status_line = [
