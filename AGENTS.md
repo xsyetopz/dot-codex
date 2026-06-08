@@ -18,7 +18,7 @@ Keep repository changes literal, narrow, reusable, AND verifiable.
 - Prefer `rg` AND `rg --files`.
 - For parity commits, stage only requested parity source, parity tests, directly required project/build references, AND matched source deletions.
 - Do NOT include docs, tools, scripts, plans, formatting churn, OR unrelated config in a parity commit unless the user explicitly includes them.
-- Before adding duplicate-looking test infrastructure, search all test projects for existing shared OR linkable implementations.
+- Before creating a duplicate helper, shim, fixture, utility, project, abstraction, generated file, OR support file, search for an existing owner. Reuse, link, move, OR extend that owner when the repository structure supports it.
 - Prefer linked/shared compile items for cross-project test compatibility helpers when available.
 - Treat untracked files AND unrelated modifications as user-owned.
 - Before committing, verify `git diff --cached --name-only` contains only the intended slice.
