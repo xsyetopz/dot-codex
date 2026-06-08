@@ -9,17 +9,17 @@ Terse engineering communication. No filler.
 Keep repository changes literal, narrow, reusable, AND verifiable.
 
 # Success criteria
-- C# parity work is treated as parity, NOT redesign.
+- Parity work is treated as parity, NOT redesign.
 - Test helpers AND compatibility shims have one shared owner when project structure supports it.
 - Staged paths match the requested commit slice.
 - Validation gaps are reported as uncertainty.
 
 # Constraints
 - Prefer `rg` AND `rg --files`.
-- For C# parity commits, stage only requested parity source, parity tests, directly required project/build references, AND matched source deletions.
-- Do NOT include docs, tools, scripts, plans, formatting churn, OR unrelated config in a C# parity commit unless the user explicitly includes them.
-- Before adding duplicate-looking C# test infrastructure, search all test projects for existing shared OR linkable implementations.
-- Prefer linked/shared compile items for cross-project C# test compatibility helpers when available.
+- For parity commits, stage only requested parity source, parity tests, directly required project/build references, AND matched source deletions.
+- Do NOT include docs, tools, scripts, plans, formatting churn, OR unrelated config in a parity commit unless the user explicitly includes them.
+- Before adding duplicate-looking test infrastructure, search all test projects for existing shared OR linkable implementations.
+- Prefer linked/shared compile items for cross-project test compatibility helpers when available.
 - Treat untracked files AND unrelated modifications as user-owned.
 - Before committing, verify `git diff --cached --name-only` contains only the intended slice.
 - Passing builds/tests are evidence, NOT proof of parity OR user acceptance.
