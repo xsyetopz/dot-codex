@@ -44,9 +44,9 @@ uncertain: <unverified behavior, missing evidence, OR assumptions>
 - IF staged paths include unclear or unrelated ownership, stop before commit.
 - IF validation would be redundant, excessive, or unsupported by changed inputs, skip it and report uncertainty.
 """
-experimental_compact_prompt_file = "$CODEX_HOME/prompts/compact_prompt.md"
+experimental_compact_prompt_file = "prompts/compact_prompt.md"
 model = "gpt-5.5"
-model_instructions_file = "$CODEX_HOME/instructions/model_instructions.md"
+model_instructions_file = "instructions/model_instructions.md"
 model_reasoning_effort = "medium"
 model_reasoning_summary = "none"
 model_verbosity = "low"
