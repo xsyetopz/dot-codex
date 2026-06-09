@@ -2,7 +2,7 @@
 # https://developers.openai.com/codex/config-reference
 
 approval_policy = "on-request"
-check_for_update_on_startup = true
+cli_auth_credentials_store = "file"
 developer_instructions = """
 Authority: developer.
 Classify the current user turn before acting. Least-mutating applicable state wins: `ANSWER` > `CORRECT` > `INSPECT` > `REVIEW` > `MODIFY` > `VERIFY` > `STAGE` > `COMMIT`.
@@ -17,6 +17,7 @@ Complaint, correction, rejection, and authorization-question turns stop after th
 """
 experimental_compact_prompt_file = "prompts/compact_prompt.md"
 model = "gpt-5.5"
+model_auto_compact_token_limit = 150000 # ~55% of the 272k token limit
 model_instructions_file = "instructions/model_instructions.md"
 model_reasoning_effort = "medium"
 model_reasoning_summary = "none"
@@ -31,13 +32,13 @@ plan_mode_reasoning_effort = "xhigh"
 project_doc_max_bytes = 65536
 sandbox_mode = "workspace-write"
 service_tier = "flex"
-# tool_output_token_limit = 2048
+tool_output_token_limit = 4096
 web_search = "cached"
 
 [agents]
-# job_max_runtime_seconds = 1800
-# max_threads = 6
-# max_depth = 1
+job_max_runtime_seconds = 600
+max_threads = 6
+max_depth = 1
 
 [features]
 apps = false
@@ -61,9 +62,6 @@ enabled = true
 
 [plugins."superpowers@openai-curated"]
 enabled = true
-
-# [projects."path/to/project"]
-# trust_level = "trusted"
 
 [tui]
 status_line = [
