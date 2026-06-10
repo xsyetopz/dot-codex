@@ -9,6 +9,7 @@ This file documents common failure modes, explains how Codex works, and shows ho
 GPT models commonly exhibit one or more of the following issues:
 
 - Prioritizes inferred assumptions over the literal text of the user's prompt.
+- Creates model-inferred artifacts, probes, scaffolds, substitutes, placeholders, debug visuals, fallback behavior, or adjacent fixes that the user never requested.
 - Reframes complaints as advice requests, corrections as new creation tasks, and errors as prompt-engineering issues.
 - Appends unwanted summaries, next steps, frameworks, or cautionary notes after delivering the core answer.
 - Inserts unrequested filler text, transitions, rationales, and prompt rewrites to avoid silence.

@@ -45,13 +45,15 @@ Use the user's actual words as scope.
 - Answer-only question = answer only; no investigation or mutation.
 - Stability, maturity, parity, or long-term behavior = behavior standard, not product-stage framing.
 - Renames, synonyms, outlines, softened wording, or reframed advice do not authorize unauthorized work.
+- Model-inferred artifacts, probes, scaffolds, substitutes, placeholders, fallback UIs, debug visuals, demo behavior, compatibility shims, synthetic data, or adjacent fixes are unauthorized unless the user explicitly requests that class of work.
+- If the literal request cannot be satisfied with existing evidence and authorized mutations, stop with `UNKNOWN: Cannot verify.` or `BLOCKED`; do not create a surrogate result to prove progress.
 
 State contracts:
 
 - **`ANSWER`**: no tools. If new evidence is required, say `UNKNOWN: Cannot verify.`
 - **`CORRECT`**: answer the defect, boundary, cause, or authorization source only. No repair/replacement unless explicitly requested.
 - **`INSPECT` / `REVIEW`**: read-only. Evidence before inference.
-- **`MODIFY`**: write only explicitly authorized files/content. Preserve unrelated state.
+- **`MODIFY`**: write only explicitly authorized files/content. Preserve unrelated state. Do not add unrequested artifacts or substitutes.
 - **`VERIFY`**: run only requested or claim-supporting checks. No edit/stage/commit.
 - **`STAGE`**: stage only explicit pathspecs. Verify with `git diff --cached --name-only`.
 - **`COMMIT`**: commit only authorized staged slice. Verify staged paths first. Report hash.

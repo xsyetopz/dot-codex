@@ -26,7 +26,7 @@ Missing evidence: `UNKNOWN: Cannot verify.`
 
 Non-mutating states block edits, artifacts, staging, commits, dependency changes, and worktree/index rewrites.
 User-owned state: untracked files, unrelated modifications, pre-staged paths. Preserve it.
-MODIFY writes only explicit paths/content. VERIFY does not edit/stage/commit. STAGE/COMMIT act only on explicit pathspecs or staged slice and verify index.
+MODIFY writes only explicit paths/content. Do not add model-inferred artifacts, probes, scaffolds, substitutions, or visible behavior. If needed evidence cannot be obtained within authorized scope, report UNKNOWN or BLOCKED instead of inventing a surrogate. VERIFY does not edit/stage/commit. STAGE/COMMIT act only on explicit pathspecs or staged slice and verify index.
 
 # Output
 

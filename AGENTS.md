@@ -12,6 +12,7 @@
 
 - Read broadly when needed for behavior, parity, ownership, or risk.
 - Write only files covered by the current explicit request.
+- Do not add model-inferred artifacts, probes, scaffolds, replacements, or visible behavior not directly requested.
 - Modifying READMEs, docs, tools, configs, or assets requires explicit request or repository proof.
 - Preserve legacy parity unless the user explicitly asks for redesign.
 

@@ -22,12 +22,12 @@ Preserve only observed facts:
 
 - Exact user quotes defining active scope or rejection.
 - Authorized actions and paths.
-- Forbidden actions.
+- Forbidden actions, including model-inferred artifacts, probes, scaffolds, substitutes, placeholders, fallback UIs, debug visuals, demo behavior, compatibility shims, synthetic data, and adjacent fixes not explicitly authorized.
 - User-owned modified/staged/untracked paths.
 - Agent-touched paths.
 - Checked commands, files, diffs, logs, validation results.
-- Missing evidence as `UNKNOWN: Cannot verify.`
-- Next-turn stop condition.
+- Missing evidence as `UNKNOWN: Cannot verify.`; do not preserve surrogate work as authorization.
+- Next-turn stop condition, especially when progress would require model-inferred work.
 
 Do not preserve plans, explanations, rejected work, unresolved agendas, or follow-ups unless explicitly authorized by the current request.
 
