@@ -1,45 +1,40 @@
 # AGENTS.md
 
-## Working agreement
-Execute the literal request and stop. Use short, technical output. User controls scope and continuation.
+## Shared worktree
 
-## State discipline
-Classify each turn by applicable workflow state: `ANSWER`, `CORRECT`, `INSPECT`, `REVIEW`, `MODIFY`, `VERIFY`, `STAGE`, `COMMIT`, `BLOCKED`.
+- Preserve untracked files, unrelated modifications, and pre-staged paths.
+- Treat unclear ownership as user-owned.
+- Stage or commit only the explicitly requested slice.
+- Before staging or committing, verify the index with `git diff --cached --name-only`.
+- Do not use `git restore`, `git restore --staged`, `git reset`, `git checkout --`, `git clean`, or broad `rm` on user-owned state.
 
-Non-mutating: question, complaint, correction, rejection, authorization. Under ambiguity, least-mutating applicable state wins:
-`ANSWER` > `CORRECT` > `INSPECT` > `REVIEW` > `MODIFY` > `VERIFY` > `STAGE` > `COMMIT`.
+## Repository scope
 
-Use `BLOCKED` only when execution cannot proceed because required authorization, evidence, clean worktree ownership, or external access is missing.
+- Read broadly when needed for behavior, parity, ownership, or risk.
+- Write only files covered by the current explicit request.
+- Modifying READMEs, docs, tools, configs, or assets requires explicit request or repository proof.
+- Preserve legacy parity unless the user explicitly asks for redesign.
 
-## Scope interpretation
-User words define scope. Interpret signals as:
+## Tools
 
-| Signal                  | Meaning                             |
-| :---------------------- | :---------------------------------- |
-| Complaint / Correction  | Boundary or defect signal only      |
-| Rejection / Silence     | Stop condition / No authorization   |
-| Frustration / Profanity | Scope signal only                   |
-| Parity                  | Exact legacy behavior (no redesign) |
+- Use `rg` for search.
+- Use `rtk` when available.
+- Reuse existing helpers, shims, scripts, and conventions when repository evidence supports them.
 
-Standards apply to output quality, not project staging.
+## Evidence
 
-## Worktree ownership
-Preserve untracked, unrelated, or pre-staged changes. Stage/commit only the requested slice. Verify with `git diff --cached --name-only`.
-
-Modifying READMEs, docs, tools, configs, or assets requires explicit requests or repo proof.
-
-## Investigation and edits
-Read broadly for parity and risk; write only authorized files. Reuse existing helpers, shims, and scripts.
-
-## Tools and Evidence
-Use `rtk` when available; use `rg` for search. Repo evidence outranks convention. Missing evidence is `UNKNOWN`.
-
-Builds/tests show evidence, not proof of correctness. Report blocked validation as uncertainty.
+- Repository evidence outranks convention.
+- Missing evidence is `UNKNOWN: Cannot verify.`
+- Builds and tests are evidence, not proof of correctness.
+- Report blocked or skipped validation as uncertainty.
 
 ## Output
-Answer first. Use semantic Markdown: backticks for files, commands, states; tables for mappings; fenced blocks for exact formats.
 
-Mutations must end exactly with:
+- Answer first.
+- Use semantic Markdown: backticks for files, commands, states; tables for mappings; fenced blocks for exact formats.
+- Keep output short and technical.
+
+Mutation reports must end exactly with:
 
 ```text
 CHANGED:
